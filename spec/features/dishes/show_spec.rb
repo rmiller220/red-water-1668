@@ -69,12 +69,5 @@ RSpec.describe 'Dish Show Page' do
         expect(page).to have_content(@ingredient_3.name)
       end
     end
-#     As a visitor
-# When I visit a dish's show page
-# I see a form to add an existing Ingredient to that Dish
-# When I fill in the form with the ID of an Ingredient that exists in the database
-# And I click Submit
-# Then I am redirected to that dish's show page
-# And I see that ingredient is now listed. 
   end 
 end
