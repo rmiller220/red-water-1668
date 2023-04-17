@@ -55,7 +55,6 @@ RSpec.describe 'Dish Show Page' do
       expect(page).to have_content("Add Ingredient:")
       expect(page).to have_field(:ingredient_id)
       expect(page).to have_button("Submit")
-
     end
 
     it "When I fill in the form with the ID of an Ingredient that exists in the database" do
