@@ -29,9 +29,9 @@ RSpec.describe 'Chef Show Page' do
       expect(page).to have_content(@ingredient_3.name)
 
       visit "/chefs/#{@chef_2.id}"
-
-      click_link("View #{@chef_2.name}'s Ingredients")
       
+      click_link("View #{@chef_2.name}'s Ingredients")
+    
       expect(current_path).to eq("/chefs/#{@chef_2.id}/ingredients")
       expect(page).to have_content(@ingredient_4.name)
       expect(page).to have_content(@ingredient_5.name)
@@ -39,9 +39,3 @@ RSpec.describe 'Chef Show Page' do
     end
   end
 end
-# As a visitor
-# When I visit a chef's show page
-# I see a link to view a list of all ingredients that this chef uses in their dishes.
-# When I click on that link
-# I'm taken to a chef's ingredients index page
-# and I can see a unique list of names of all the ingredients that this chef uses.
