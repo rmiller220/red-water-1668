@@ -8,7 +8,7 @@ RSpec.describe 'Dish Show Page' do
     end
     it "I see the dish's name and description" do
       visit "/dishes/#{@dish_1.id}"
-      save_and_open_page
+
       expect(page).to have_content("#{@dish_1.name} show page")
       expect(page).to have_content("Name: #{@dish_1.name}")
       expect(page).to have_content("Description: #{@dish_1.description}")
@@ -43,5 +43,38 @@ RSpec.describe 'Dish Show Page' do
       expect(page).to have_content("Chef: #{@dish_3.chef.name}")
     end
 
+    it "I see a form to add an existing Ingredient to that Dish" do
+      visit "/dishes/#{@dish_1.id}"
+
+      expect(page).to have_content("Add Ingredient:")
+      expect(page).to have_field(:ingredient_id)
+      expect(page).to have_button("Submit")
+
+      visit "/dishes/#{@dish_3.id}"
+
+      expect(page).to have_content("Add Ingredient:")
+      expect(page).to have_field(:ingredient_id)
+      expect(page).to have_button("Submit")
+
+    end
+
+    it "When I fill in the form with the ID of an Ingredient that exists in the database" do
+      visit "/dishes/#{@dish_1.id}"
+
+      fill_in :ingredient_id, with: @ingredient_3.id
+      click_button "Submit"
+      expect(current_path).to eq("/dishes/#{@dish_1.id}")
+
+      within "#ingredients" do
+        expect(page).to have_content(@ingredient_3.name)
+      end
+    end
+#     As a visitor
+# When I visit a dish's show page
+# I see a form to add an existing Ingredient to that Dish
+# When I fill in the form with the ID of an Ingredient that exists in the database
+# And I click Submit
+# Then I am redirected to that dish's show page
+# And I see that ingredient is now listed. 
   end 
 end

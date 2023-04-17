@@ -9,5 +9,11 @@
 </div>
 <p>Total Calories: <%= @dish.total_calories %></p>
 <p>Chef: <%= @dish_chef_name %></p>
+<p>Add Ingredient: </p>
+<%= form_with url: "/dishes/#{@dish.id}", local: true do |f| %>
+  <%= f.label :ingredient_id, "Ingredient Id:" %>
+  <%= f.number_field :ingredient_id %>
+  <%= f.submit 'Submit' %>
+<% end %>
 
 
